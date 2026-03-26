@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/theme/app_colors.dart';
+
+import 'core/network/dio_client.dart';
+import 'features/account/data/datasources/account_remote_datasource.dart';
+
+
 import 'features/account/data/repositories/account_repository_impl.dart';
 import 'features/account/domain/usecases/get_profile_usecase.dart';
 import 'features/account/presentation/cubit/account_cubit.dart';
@@ -33,6 +38,9 @@ import 'features/payment/domain/usecases/get_payment_methods_usecase.dart';
 import 'features/payment/presentation/cubit/payment_cubit.dart';
 
 void main() {
+
+  final dioClient = DioClient();
+
   final onboardingRepository = OnboardingRepositoryImpl();
   final getSlidesUseCase = GetOnboardingSlidesUseCase(onboardingRepository);
 
@@ -59,7 +67,11 @@ void main() {
   final paymentRepository = PaymentRepositoryImpl();
   final getPaymentMethodsUseCase = GetPaymentMethodsUseCase(paymentRepository);
 
+  final accountRemote = AccountRemoteDataSource(dioClient);
+  final accountRepository = AccountRepositoryImpl(accountRemote);
+
   final accountRepository = AccountRepositoryImpl();
+
   final getProfileUseCase = GetProfileUseCase(accountRepository);
 
   runApp(

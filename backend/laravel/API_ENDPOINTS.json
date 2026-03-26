@@ -1,0 +1,24 @@
+{
+  "auth": {
+    "login": {"method": "POST", "url": "/api/v1/auth/login", "request": {"email": "rafi@mail.com", "password": "secret123"}, "response": {"data": {"token": "token", "user": {"id": 1, "name": "Rafi"}}}}
+  },
+  "doctors": {
+    "index": {"method": "GET", "url": "/api/v1/doctors?search=&specialty_id=&city=&page=1"},
+    "show": {"method": "GET", "url": "/api/v1/doctors/{id}"}
+  },
+  "appointments": {
+    "store": {"method": "POST", "url": "/api/v1/appointments", "request": {"doctor_id": 1, "type": "online", "consult_mode": "video", "schedule_date": "2026-03-30", "schedule_start": "11:00", "schedule_end": "11:30", "patient_name": "Mizan", "patient_email": "m@mail.com", "patient_phone": "+880", "patient_gender": "male", "patient_age": "21 Years", "visiting_purpose": "Pain"}}
+  },
+  "payments": {
+    "methods": {"method": "GET", "url": "/api/v1/payments/methods"},
+    "checkout": {"method": "POST", "url": "/api/v1/payments/checkout"}
+  },
+  "notifications": {
+    "index": {"method": "GET", "url": "/api/v1/notifications?page=1"},
+    "read_all": {"method": "PATCH", "url": "/api/v1/notifications/read-all"}
+  },
+  "inbox": {
+    "threads": {"method": "GET", "url": "/api/v1/inbox/threads"},
+    "messages": {"method": "GET", "url": "/api/v1/inbox/threads/{id}/messages?page=1"}
+  }
+}

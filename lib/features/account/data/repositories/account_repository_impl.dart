@@ -1,5 +1,20 @@
 import '../../domain/entities/user_profile.dart';
 import '../../domain/repositories/account_repository.dart';
+
+import '../datasources/account_remote_datasource.dart';
+import '../models/user_profile_model.dart';
+
+class AccountRepositoryImpl implements AccountRepository {
+  const AccountRepositoryImpl(this._remote);
+
+  final AccountRemoteDataSource _remote;
+
+  @override
+  Future<UserProfile> getProfile() async {
+    final json = await _remote.profile();
+    final data = (json['data'] as Map<String, dynamic>? ?? json);
+    return UserProfileModel.fromMap(data);
+
 import '../models/user_profile_model.dart';
 
 class AccountRepositoryImpl implements AccountRepository {
@@ -14,5 +29,6 @@ class AccountRepositoryImpl implements AccountRepository {
       'dob': '18 February, 2001',
       'avatar': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
     });
+
   }
 }
