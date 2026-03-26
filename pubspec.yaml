@@ -1,0 +1,17 @@
+name: medixin_onboarding_template
+description: Clean Architecture onboarding UI template for Medixin.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.5
+  equatable: ^2.0.5
+  dio: ^5.7.0
+
+flutter:
+  uses-material-design: true
